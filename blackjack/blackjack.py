@@ -11,15 +11,19 @@ def score_hand(hand):
             ace_count += 1
         else:
             score += card.value
+            
     ## Assigns Aces to be worth 1 point instead of 11 until score <= 21
     while ace_count > 0 and score > 21:
         ace_count -= 1
         score -= 10
+        
     return score
                 
 def blackjack():
     # Function that manages a single round of blackjack
+    
     deck = Card_Deck()
+    
     ## Makes hands of players
     player_hand = Hand()
     comp_hand = Hand()
@@ -27,6 +31,7 @@ def blackjack():
         player_hand.add_card(deck)
     for i in range(2):
         comp_hand.add_card(deck)
+    
     ## Human decides how many cards to take
     while True:
         print "Your hand is "+ str(player_hand)
@@ -39,6 +44,7 @@ def blackjack():
             continue
         player_hand.add_card(deck)
         print 
+    
     ## Computer AI (Computer is dealer). Dealer hits when score < 17 
     comp_score = score_hand(comp_hand.cards)
     while comp_score < 17:
@@ -46,6 +52,7 @@ def blackjack():
         comp_score = score_hand(comp_hand.cards)
     player_score = score_hand(player_hand.cards)
     print
+    
     ## Determine the winner. Dealer wins ties.
     if player_score <=21 and (player_score > comp_score or comp_score > 21):                                               
         print ('You won!')
